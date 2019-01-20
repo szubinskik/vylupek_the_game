@@ -1,0 +1,268 @@
+\documentclass[avery5371, grid, frame]{flashcards}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\geometry{headheight=12pt}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+
+\cardfrontstyle[]{headings}
+\cardfrontfoot{Teoria statystyki}
+
+
+\begin{document}
+
+\begin{flashcard}[Definicja]{Rozkład gamma \\ (parametry, gęstość, MGF)}
+    Parametry: $\alpha > 0, \beta > 0$
+    $$ f(x) =
+    \begin{cases}
+        \frac{1}{\Gamma(\alpha)\beta^\alpha} x^{\alpha-1} e^{-x/\beta}, \quad x \in (0, \infty) \\
+        0, \text{w p.p.}
+    \end{cases} $$
+    $$M_X(t) = \left ( \frac{1}{1-\beta t}\right )^\alpha, t < \frac{1}{\beta}$$
+\end{flashcard}
+
+\begin{flashcard}[Definicja]{Rozkład chi kwadrat \\ (parametry, gęstość, MGF)}
+    Parametry: $r > 0$
+    $$ f(x) =
+    \begin{cases}
+        \frac{1}{\Gamma(r/2)2^{r/2}} x^{r/2 - 1} e^{-x/2}, x \in (0, \infty) \\
+        0, \text{w p.p.}
+    \end{cases} $$
+    $$M_X(t) = (1-2t)^{-r/2}, t < \frac{1}{2}$$
+\end{flashcard}
+
+\begin{flashcard}[Definicja]{Rozkład beta \\ (parametry, gęstość)}
+    Parametry: $\alpha > 0, \beta > 0$
+    $$ f(x) =
+    \begin{cases}
+        \frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha) \Gamma(\beta)} x^{\alpha - 1} (1-x)^{\beta - 1}, x \in (0, 1) \\
+        0, \text{w p.p.}
+    \end{cases} $$
+\end{flashcard}
+
+\begin{flashcard}[Twierdzenie]{Zależności między rozkładami beta, gamma, chi kwadrat}
+\begin{small}
+    \begin{itemize}
+        \item $\Gamma (r/2, 2) \,{\buildrel d \over =}\, \chi^2 (r)$
+        \item $\Gamma(1, \frac{1}{\lambda}) \,{\buildrel d \over =}\, \mathcal{E}(\lambda) $
+        \item $\sum_{i = 1}^{n} \Gamma(\alpha_i, \beta) \,{\buildrel d \over =}\, \Gamma(\sum_{i=1}^{n} \alpha_i, \beta) $
+        \item $\sum_{i=1}^{n} \chi^2(r_i) \,{\buildrel d \over =}\, \chi^2 (\sum_{i=1}^{n} r_i)$
+    \end{itemize}
+\end{small}
+\end{flashcard}
+
+\begin{flashcard}[Definicja]{Rozkład normalny \\ (parametry, gęstość, MGF)}
+    Parametry: $\mu \in \mathbb{R}$, $\sigma^2 > 0$
+    $$ f(x) = \frac{1}{\sqrt{2\pi}} e^{\frac{-(x-\mu)^2}{\sigma}} $$
+    $$ M_X(t) = e^{\mu t + \frac{1}{2}\sigma^2 t^2} $$
+\end{flashcard}
+
+\begin{flashcard}[Definicja]{Wielowymiarowy rozkład normalny \\ (parametry, gęstość, MGF)}
+    Parametry: $\boldsymbol{\mu} \in \mathbb{R}^n$, $\boldsymbol{\Sigma} \in M_{n \times n}(\mathbb{R})$ symetryczna, dodatnio określona
+    $$ f(\mathbf{x}) = \frac{1}{(2\pi)^{n/2} |\boldsymbol{\Sigma}|^{1/2}} \text{exp} \left \{ -\frac{1}{2} (\mathbf{x} - \boldsymbol{\mu})^T \boldsymbol{\Sigma} (\mathbf{x} - \boldsymbol{\mu}) \right \}$$
+    $$M_x(\mathbf{t}) = \text{exp}\{ \mathbf{t}^T \boldsymbol{\mu} + \frac{1}{2} \mathbf{t}^T \boldsymbol{\Sigma} \boldsymbol{t}\} $$
+\end{flashcard}
+
+\begin{flashcard}[Twierdzenie]{Przekształcenie liniowe wielowymiarowego rozkładu normalnego}
+    Niech \textbf{X} ma rozkład $\mathcal{N}_n (\boldsymbol{\mu}, \boldsymbol{\Sigma})$. Niech $\mathbf{A} \in M_{m \times n}(\mathbb{R})$, $\mathbf{b} \in \mathbb{R}^m$. \\
+    Wtedy $\mathbf{AX} + \mathbf{b}$ ma rozkład $\mathcal{N}_m(\mathbf{A}\boldsymbol{\mu} + \mathbf{b}, \mathbf{A}\boldsymbol{\Sigma}\mathbf{A}^T)$.
+\end{flashcard}
+
+\begin{flashcard}[Twierdzenie]{Rozkłady brzegowe w wielowymiarowym rozkładzie normalnym}
+    Niech \textbf{X} ma rozkład $\mathcal{N}_n (\boldsymbol{\mu}, \boldsymbol{\Sigma})$, gdzie \\
+    $ \boldsymbol{\mu} =
+    \left[ \begin{array}{c}
+    \boldsymbol{\mu}_1 \\
+    \boldsymbol{\mu}_2 \end{array} \right] $,
+    $ \boldsymbol{\Sigma} =
+    \left[ \begin{array}{cc}
+    \boldsymbol{\Sigma}_{11} & \boldsymbol{\Sigma}_{12}\\
+    \boldsymbol{\Sigma}_{21} & \boldsymbol{\Sigma}_{22} \end{array} \right] $. \newline
+    
+    Wtedy $\mathbf{X_1}$ ma rozkład $\mathcal{N}_m(\boldsymbol{\mu_1}, \boldsymbol{\Sigma}_{11})$. \\ Ponadto $\mathbf{X_1}$, $\mathbf{X_2}$ są niezależne wtw., gdy $\boldsymbol{\Sigma}_{12} = \mathbf{0}$.
+\end{flashcard}
+
+\begin{flashcard}[Definicja]{Rozkład \textit{t}-Studenta \\ (parametry, i otrzymywanie z innych rozkładów)}
+    Parametr: $r > 0$ \\
+    Niech $W \sim \mathcal{N}(0, 1)$, $V \sim \chi^2(r)$. Wtedy $$ T = \frac{W}{\sqrt{V/r}} $$ ma rozkład Studenta z $r$ stopniami swobody.
+\end{flashcard}
+
+\begin{flashcard}[Twierdzenie]{Twierdzenie Studenta}
+\begin{small}
+\begin{flushleft}
+    Niech $X_1, X_2, \dots, X_n$ będą i.i.d. zmiennymi z rozkładu $\mathcal{N}(\mu, \sigma^2)$. Oznaczmy $\overline{X} = \frac{1}{n} \sum_{i=1}^{n} X_i$, $S^2 = \frac{1}{n-1} \sum_{i=1}^{n} (X_i - \overline{X})^2$. Wtedy:
+    \begin{itemize}
+        \item $\overline{X}$ ma rozkład $\mathcal{N}(\mu, \frac{\sigma^2}{n})$.
+        \item $\overline{X}$ i $S^2$ są niezależne.
+        \item $(n-1)S^2/\sigma^2$ ma rozkład $\chi^2(n-1)$.
+        \item Zmienna $ T = \frac{\overline{X} - \mu}{S / \sqrt{n}} $ ma rozkład Studenta z $n-1$ stopniami swobody.
+    \end{itemize}
+\end{flushleft}
+\end{small}
+\end{flashcard}
+
+\begin{flashcard}[Definicja]{Rozkład \textit{F}-Snedecora \\ (parametry i otrzymywanie z innych rozkładów)}
+    Parametry: $r_1$, $r_2 > 0$ \\
+    Niech $U \sim \chi^2(r_1)$, $V \sim \chi^2(r_2)$. Wtedy zmienna $$ W = \frac{U/r_1}{V/r_2} $$ ma rozkład Snedecora z $r_1$ stopniami swobody w liczniku i $r_2$ w mianowniku.
+\end{flashcard}
+
+\begin{flashcard}[Definicja]{Zbieżność wg prawdopodobieństwa}
+    Mówimy, że ciąg zmiennych losowych $\{ X_n \}$ zbiega wg prawdodpobieństwa do $X$, jeżeli dla każdego $\epsilon > 0$ $$\lim_{n \rightarrow \infty} P(|X_n - X| \geq \epsilon) = 0.$$
+\end{flashcard}
+
+\begin{flashcard}[Twierdzenie]{Słabe prawo wielkich liczb}
+    Niech $\{X_n\}$ będzie ciągiem i.i.d. zmiennych losowych o średniej $\mu$ i wariancji $\sigma^2 < \infty$. Wtedy $$ \frac{1}{n} \sum_{i=1}^{n} X_i \xrightarrow{P} \mu.$$
+\end{flashcard}
+
+\begin{flashcard}[Definicja]{Estymator zgodny}
+    Niech zmienna $X$ ma gęstość $f(x, \theta), \theta \in \Omega$. Niech $X_1, X_2, \dots, X_n$ będzie próbką z rozkładu $X$ i niech $T_n$ oznacza statystykę. $T_n$ nazywamy zgodnym estymatorem $\theta$, jeżeli $$ T_n \xrightarrow{P} \theta . $$
+\end{flashcard}
+
+\begin{flashcard}[Definicja]{Zbieżność wg rozkładu}
+     Mówimy, że ciąg zmiennych losowych $\{ X_n \}$ zbiega wg rozkładu do $X$, jeżeli dla każdego punktu ciągłości $x$ dystrybuanty $F_X$ mamy $$ \lim_{n \rightarrow \infty} F_{X_n}(x) = F_X(x).$$
+\end{flashcard}
+
+\begin{flashcard}[Definicja]{Ograniczenie w prawdopodobieństwie}
+    Mówimy, że ciąg zmiennych losowych $\{ X_n \}$ jest ograniczony w prawdopodobieństwie, jeżeli dla każdego $\epsilon > 0$ istnieją $B_\epsilon > 0$ i indeks $N_\epsilon$ takie, że $$ n \geq N_\epsilon \Rightarrow P(|X_n| \leq B_\epsilon) \geq 1-\epsilon$$.
+\end{flashcard}
+
+\begin{flashcard}[Twierdzenie]{Twierdzenia o $\Delta$-metodzie}
+    \begin{itemize}
+        \item Niech $\{Y_n\}$ będzie ciągiem zmiennych losowych ograniczonych w prawdopodobieństwie. Załóżmy, że $X_n = o_p(Y_n)$. Wtedy $X_n \xrightarrow{P} 0$.
+        \item Niech $\{X_n\}$ będzie ciągiem zmiennych losowych takich, że $ \sqrt{n}(X_n - \theta) \xrightarrow{D} \mathcal{N}(0, \sigma^2).$ Załóżmy, że $g(x)$ jest różniczkowalna w $\theta$ i $g'(\theta) \neq 0.$ Wtedy $\sqrt{n}(g(X_n) - g(\theta)) \xrightarrow{D} \mathcal{N}(0, \sigma^2(g'(\theta))^2)$.
+    \end{itemize}
+\end{flashcard}
+
+\begin{flashcard}[Twierdzenie]{Zbieżność MGF \\ a zbieżność wg rozkładu}
+    Niech $\{X_n\}$ będzie ciągiem zmiennych losowych takich, że $M_{X_n}(t)$ istnieją dla $t \in (-h, h)$. Niech $X$ będzie zmienną losową taką, że $M_X(t)$ istnieje dla $t \in [-h_1, h_1] \subseteq [-h, h]$. Jeżeli dla $t \in [-h_1, h_1]$ mamy $\lim_{n \rightarrow \infty} M_{X_n}(t) = M_X(t)$, to $X_n \xrightarrow{D} X$.
+\end{flashcard}
+
+\begin{flashcard}[Twierdzenie]{Centralne twierdzenie graniczne}
+    Niech $\{X_n\}$ będzie ciągiem i.i.d. zmiennych losowych z rozkładu o średniej $\mu$ i wariancji $0 < \sigma^2 < \infty$. Wtedy $$ \frac{\sum_{i=1}^{n} X_i - n\mu}{\sigma \sqrt{n}} = \frac{\sqrt{n}(\overline{X}_n - \mu)}{\sigma} \xrightarrow{D} \mathcal{N}(0, 1).$$
+\end{flashcard}
+
+\begin{flashcard}[Twierdzenie]{Rozkład łączny i brzegowy statystyk porządkowych}
+    $$ g(y_1, y_2, \dots, y_n) =
+    \begin{cases}
+        n! \prod_{i=1}^{n}f(y_i), y_i \text{ rosnąco} \\
+        0, \text{w p.p.}
+    \end{cases} $$
+    \begin{align*}
+        g_k(y_k) = \int_a^{y_2} \dots \int_a^{y_k} \int_{y_k}^b \dots \int_{y_{n-1}}^b n! \prod f(y_i) \\ dy_n \dots dy_{k+1} dy_{k-1} \dots dy_1.
+    \end{align*}
+\end{flashcard}
+
+\begin{flashcard}[Definicja]{Estymator największej wiarogodności (MLE)}
+    Mówimy, że $\hat{\theta} = \hat{\theta}(\mathbf{X}$ jest estymatorem największej wiarygodności $\theta$, jeżeli $$ \hat{\theta} = Argmax L(\theta; \mathbf{X}),$$ gdzie $ L(\theta;\textbf{X}) = \prod_{i=1}^n f(x_i; \theta), \theta \in \Omega$ (funkcja wiarygodności).
+\end{flashcard}
+
+\begin{flashcard}[Twierdzenie]{MLE funkcji parametru}
+    Niech $X_1, X_2, \dots, X_n$ będzie próbą z rozkładu \\ o gęstości $f(x; \theta)$, $\theta \in \Omega$. Załóżmy że $\hat{\theta}$ jest MLE parametru $\theta$. Wtedy $g(\hat{\theta})$ jest MLE parametru $\eta = g(\theta)$.
+\end{flashcard}
+
+\begin{flashcard}[Twierdzenie]{Warunki na zgodność MLE}
+    Załóżmy, że rodzina $f(x;\theta)$ jest różna dla różnych $\theta$, ma wspólny nośnik i faktyczny parametr $\theta_0$ jest we wnętrzu $\Omega$. Wtedy $ \frac{\partial}{\partial \theta} L(\theta) = 0 $ ma rozwiązanie $\theta_n$ będące zgodnym estymatorem $\theta$.
+\end{flashcard}
+\begin{flashcard}[Definicja]{Informacja Fishera (dodatkowe założenia)}
+    Założenia: $f(x; \theta)$ jest dwukrotnie różniczkowalna po $\theta$, całka $\int f(x;\theta)$ jest dwukrotnie różniczkowalna po $\theta$ pod znakiem całki. \\
+    Dla rozkładu $f(x; \theta)$ określamy $$ I(\theta) = \mathbb{E} \left[  \left( \frac{\partial \log f(X; \theta)}{\partial \theta}\right)^2 \right] = Var \left( \frac{\partial \log f(X; \theta)}{\partial \theta} \right). $$
+\end{flashcard}
+
+\begin{flashcard}[Definicja]{Estymator wydajny}
+    Mówimy, że $Y$ - zgodny estymator $\theta$ jest wydajny, jeżeli wariancja $Y$ osiąga dolne ograniczenie w nierówności Cram\'era-Rao.
+\end{flashcard}
+
+\begin{flashcard}[Twierdzenie]{Nierówność Cram\'era-Rao}
+\begin{small}
+    Niech zachodzą warunki regularności jak w definicji $I(\theta)$. Niech $X_1, X_2, \dots, X_n$ będzie próbą z rozkładu o gęstości $f(x; \theta)$, $\theta \in \Omega$. Niech $Y = u(X_1, X_2, \dots, X_n)$ będzie statystyką o średniej $\mathbb{E}[Y] = k(\theta)$. Wtedy $$ Var(Y) \geq \frac{[k'(\theta)]^2}{n I(\theta)}.$$
+    W szczególności, dla $Y$ - zgodnego estymatora $\theta$ mamy $$ Var(Y) \geq \frac{1}{n I(\theta)}.$$
+\end{small}
+\end{flashcard}
+
+\begin{flashcard}[Definicja]{Wydajność asymptotyczna}
+    Niech $\hat{\theta}_{1n}$ będzie zgodnym estymatorem $\theta_0$ takim, że $\sqrt{n}(\hat{\theta}_{1n} - \theta_0) \xrightarrow{D} \mathcal{N}(0, \sigma_{\hat{\theta}_{1n}}^2).$ Wydajnością asymptotyczną nazywamy stosunek $e(\hat{\theta}_{n}) = \frac{1/I(\theta_0)}{\sigma_{\hat{\theta}_{1n}}^2}$. Estymator jest asymptotycznie wydajny, jeżeli ten stosunek wynosi 1. \\
+    Asymptotyczna wydajność względna $\hat{\theta}_{1n}$ względem $\hat{\theta}_{2n}$ to stosunek tych wartości.
+    
+\end{flashcard}
+
+\begin{flashcard}[Definicja]{Estymator nieobciążony o minimalnej wariancji}
+    No zgadnij xD
+\end{flashcard}
+
+\begin{flashcard}[Definicja]{Statystyka dostateczna}
+    Statystyka $Y_1 = u_1(X_1, X_2, \dots, X_n$ z próby o rozkładzie (dyskretnym lub ciągłym) $f(x; \theta)$ jest dostateczna wtw., gdy
+    $$ \frac{f(x_1; \theta) f(x_2; \theta) \dots f(x_n; \theta)}{f_{Y_1}[u_1(x_1, x_2, \dots, x_n); \theta]} = H(x_1, x_2, \dots, x_n, $$ gdzie funkcja $H$ nie zależy od $\theta$.
+\end{flashcard}
+
+\begin{flashcard}[Twierdzenie]{Twierdzenie Neymana}
+    Statystyka $Y_1 = u_1(X_1, X_2, \dots, X_n$ z próby o rozkładzie (dyskretnym lub ciągłym) $f(x; \theta)$ jest dostateczna wtw., gdy istnieją dwie nieujemne funkcje $k_1$, $k_2$ takie, że
+    \begin{small}
+    $$ \prod_{i=1}^n f(x_i; \theta) = k_1[u_1(x_1, x_2, \dots, x_n); \theta] k_2(x_1, x_2, \dots, x_n), $$ gdzie $k_2$ nie zależy od $\theta$.
+    \end{small}
+\end{flashcard}
+
+\begin{flashcard}[Twierdzenie]{Twierdzenie Rao-Blackwella}
+    \begin{small}
+    Niech $X_1, X_2, \dots, X_n$ będzie próbą z rozkładu o gęstości (dyskretnej lub ciągłej) $f(x; \theta), \theta \in \Omega$. Niech $Y_1$ będzie statystyką dostateczną dla $\theta$ i niech $Y_2$ będzie nieobciążonym estymatorem $\theta$, który nie jest funkcją samego $Y_1$.\\
+    Wtedy statystyka $\varphi(Y_1) = \mathbb{E}[Y_2 | y_1]$ jest statystyką dostateczną, nieobciążonym estymatorem $\theta$ i ma wariancję mniejszą niż $Var(Y_2)$.
+    \end{small}
+\end{flashcard}
+
+\begin{flashcard}[Twierdzenie]{Zależność MLE od statystyki dostatecznej}
+    Niech $X_1, X_2, \dots, X_n$ będzie próbą z rozkładu o gęstości (dyskretnej lub ciągłej) $f(x; \theta), \theta \in \Omega$. Jeżeli dla $\theta$ istnieją statystyka dostateczna $Y_1$ oraz jedyny estymator największej wiarogodności $\hat{\theta}$, to $\hat{\theta}$ jest funkcją $Y_1$.
+\end{flashcard}
+
+\begin{flashcard}[Definicja]{Zupełna rodzina rozkładów}
+    Niech zmienna losowa $Z$ będzie ciągła lub dyskretna o rozkładzie z rodziny $\{h(z; \theta) : \theta \in \Omega\}$. Jeżeli z faktu, że dla każdej $\theta \in \Omega $, $\mathbb{E}[u(Z)] = 0$ można wnioskować, że $u(z) = 0$ wszędzie poza punktami o prawdopodobieństwie zerowym dla każdego $h(z; \theta)$ z tej rodziny, to rodzinę $h(z; \theta)$ nazywamy zupełną rodziną rozkładów.
+\end{flashcard}
+
+\begin{flashcard}[Twierdzenie]{Twierdzenie Lehmanna-Scheff\'ego}
+    Niech $X_1, X_2, \dots, X_n$ będzie próbą z rozkładu o gęstości (dyskretnej lub ciągłej) $f(x, \theta)$. Niech $Y_1$ będzie statystyką dostateczną dla $\theta$ i niech rodzina $\{ f_{Y_1}(y_1, \theta) : \theta \in \Omega \}$ będzie zupełna. Jeżeli istnieje funkcja od $Y_1$, która jest nieobciążonym estymatorem $\theta$, to jest też jedynym ENMW.
+\end{flashcard}
+
+\begin{flashcard}[Definicja]{Dostateczna statystyka zupełna}
+    Statystyka $Y_1 = u_1(X_1, X_2, \dots, X_n$ z próby o rozkładzie (dyskretnym lub ciągłym) $f(x; \theta), \theta \in \Omega$ jest dostateczna i zupełna wtw., gdy jest dostateczna i rodzina $\{ f_{Y_1}(y_1, \theta) : \theta \in \Omega \}$ jest zupełna.
+\end{flashcard}
+
+\begin{flashcard}[Definicja]{Regularna klasa wykładnicza}
+    Mówimy, że rozkład jest w regularnej klasie wykładniczej, jeżeli jest postaci
+    $$ f(x; \theta) =
+    \begin{cases}
+        \text{exp}[p(\theta) K(x) + S(x) + q(\theta)], x \in \mathcal{S} \\
+        0, \text{w p.p.,} 
+    \end{cases} $$
+    Jeżeli $\mathcal{S}$ nie zależy od $\theta$, $p(\theta)$ jest ciągłą, nietrywialną funkcją $\theta$, $S$ jest ciągłą funkcją $x$ oraz $K'(x) \not\equiv 0$.
+\end{flashcard}
+    
+\begin{flashcard}[Twierdzenie]{Własności statystyki z regularnej klasy wykładniczej}
+    Niech $X_1, X_2, \dots, X_n$ będzie próbą z rozkładu z regularnej klasy wykładniczej. Wtedy statystyka $Y_1 = \sum_{i=1}^n K(X_i)$ ma własności:
+    \begin{enumerate}
+        \item $f_{Y_1}(y_1; \theta) = R(y_1) \text{exp}[p(\theta) y_1 + n q(\theta)],$ gdzie nośnik i $R(y_1)$ nie zależą od $\theta$,
+        \item $\mathbb{E}[Y_1] = -n \frac{q'(\theta)}{p'(\theta)}$,
+        \item $Var(Y_1) = n \frac{1}{p'(\theta)^3} \{ (p''(\theta)q'(\theta) - q''(\theta)p'(\theta) \} $.
+    \end{enumerate}
+\end{flashcard}
+
+\begin{flashcard}[Twierdzenie]{Zupełna statystyka z regularnej klasy wykładniczej}
+    Niech $X_1, X_2, \dots, X_n$ będzie próbą z rozkładu o gęstości $f(x; \theta)$, $\theta \in (\gamma, \delta)$ z regularnej klasy wykładniczej. Wtedy statystyka $Y_1 = \sum_{i=1}^n K(X_i)$ jest dostateczną statystyką zupełną.
+\end{flashcard}
+
+\begin{flashcard}[Definicja]{Błąd I i II rodzaju}
+    Błąd I rodzaju: odrzucenie hipotezy zerowej, gdy jest poprawna. \\
+    Błąd II rodzaju: przyjęcie hipotezy zerowej, gdy jest błędna.
+\end{flashcard}
+
+\begin{flashcard}[Definicja]{Wielkość obszaru krytycznego}
+`
+\end{flashcard}
+
+\begin{flashcard}[Definicja]{Moc testu statystycznego}
+    Mocą testu nazywamy prawdopodobieństwo popełnienia błęd
+\end{flashcard}
+\end{document}
