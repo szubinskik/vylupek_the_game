@@ -1,9 +1,15 @@
+% % % % % % % % % % % % % % % %
+% Fiszki z teorii statystyki  %
+% by: Marcin Sidorowicz       %
+% % % % % % % % % % % % % % % %
+
 \documentclass[avery5371, grid, frame]{flashcards}
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{enumitem}
 
 \geometry{headheight=12pt}
 \usepackage{fancyhdr}
@@ -169,9 +175,27 @@
 \begin{flashcard}[Twierdzenie]{Warunki na zgodność MLE}
     Załóżmy, że rodzina $f(x;\theta)$ jest różna dla różnych $\theta$, ma wspólny nośnik i faktyczny parametr $\theta_0$ jest we wnętrzu $\Omega$. Wtedy $ \frac{\partial}{\partial \theta} L(\theta) = 0 $ ma rozwiązanie $\theta_n$ będące zgodnym estymatorem $\theta$.
 \end{flashcard}
+
+\begin{flashcard}[Definicja]{Warunki regularności rodziny $f(x; \theta)$}
+\begin{footnotesize}
+\setlist[enumerate, 1]{start=0}
+\begin{enumerate}
+    \item Funkcje gęstości są rozróżnialne, tzn. $\theta \neq \theta' \Rightarrow f(x_i; \theta) \neq f(x_i, \theta')$.
+    \item Funkcje gęstości mają ten sam nośnik dla wszystkich $\theta$.
+    \item $\theta_0$ (faktyczna wartość $\theta$) leży wewnątrz $\Omega$.
+    \item $f(x; \theta)$ jest dwukrotnie różniczkowalna po $\theta$.
+    \item $\int f(x; \theta) dx$ jest dwukrotnie różniczkowalna pod całką.
+    \item $f(x; \theta)$ jest trzykrotnie różniczkowalna po $\theta$. Dla każdej $\theta \in \Omega$ istnieje stała $c$ i funkcja $M(x)$ taka, że $\left| \frac{\partial^3}{\partial \theta^3} \log f(x; \theta) \right| \leq M(x)$, $E_{\theta_0}[M(x)] < \infty$ dla $\theta \in (\theta_0 - c, \theta_0 + c)$.
+\end{enumerate}
+\end{footnotesize}
+\end{flashcard}
+
 \begin{flashcard}[Definicja]{Informacja Fishera (dodatkowe założenia)}
-    Założenia: $f(x; \theta)$ jest dwukrotnie różniczkowalna po $\theta$, całka $\int f(x;\theta)$ jest dwukrotnie różniczkowalna po $\theta$ pod znakiem całki. \\
-    Dla rozkładu $f(x; \theta)$ określamy $$ I(\theta) = \mathbb{E} \left[  \left( \frac{\partial \log f(X; \theta)}{\partial \theta}\right)^2 \right] = Var \left( \frac{\partial \log f(X; \theta)}{\partial \theta} \right). $$
+    Założenia: warunki regularności (R0)-(R4) \\
+    Dla rozkładu $f(x; \theta)$ określamy
+    \begin{multline*}
+    I(\theta) = \mathbb{E} \left[  \left( \frac{\partial \log f(X; \theta)}{\partial \theta}\right)^2 \right] = \\ = Var \left( \frac{\partial \log f(X; \theta)}{\partial \theta} \right) = \int_{-\infty}^\infty \frac{\partial^2 \log f(x; \theta)}{\partial \theta^2} f(x; \theta) dx
+    \end{multline*}
 \end{flashcard}
 
 \begin{flashcard}[Definicja]{Estymator wydajny}
@@ -180,9 +204,14 @@
 
 \begin{flashcard}[Twierdzenie]{Nierówność Cram\'era-Rao}
 \begin{small}
-    Niech zachodzą warunki regularności jak w definicji $I(\theta)$. Niech $X_1, X_2, \dots, X_n$ będzie próbą z rozkładu o gęstości $f(x; \theta)$, $\theta \in \Omega$. Niech $Y = u(X_1, X_2, \dots, X_n)$ będzie statystyką o średniej $\mathbb{E}[Y] = k(\theta)$. Wtedy $$ Var(Y) \geq \frac{[k'(\theta)]^2}{n I(\theta)}.$$
+    Niech zachodzą warunki regularności (R0)-(R4).  Niech $X_1, X_2, \dots, X_n$ będzie próbą z rozkładu o gęstości $f(x; \theta)$, $\theta \in \Omega$. Niech $Y = u(X_1, X_2, \dots, X_n)$ będzie statystyką o średniej $\mathbb{E}[Y] = k(\theta)$. Wtedy $$ Var(Y) \geq \frac{[k'(\theta)]^2}{n I(\theta)}.$$
     W szczególności, dla $Y$ - zgodnego estymatora $\theta$ mamy $$ Var(Y) \geq \frac{1}{n I(\theta)}.$$
 \end{small}
+\end{flashcard}
+
+\begin{flashcard}[Twierdzenie]{Asymptotyczny rozkład różnicy estymatorów}
+    Niech zachodzą warunki regularności (R0)-(R5). Niech $X_1, X_2, \dots, X_n$ będzie próbą z rozkładu $f(x; \theta_0)$ o niezerowej i skończonej informacji Fishera. Jeżeli $g(x)$ jest funkcją ciągłą i różniczkowalną w $\theta_0$, to ciąg zgodnych MLE spełnia
+    $$\sqrt{n} (g(\hat{\theta}) - g(\theta_0)) \overset{D}{\rightarrow} \mathcal{N} \left( 0, \frac{g'(\theta_0)^2}{I(\theta_0)} \right). $$
 \end{flashcard}
 
 \begin{flashcard}[Definicja]{Wydajność asymptotyczna}
@@ -192,12 +221,12 @@
 \end{flashcard}
 
 \begin{flashcard}[Definicja]{Estymator nieobciążony o minimalnej wariancji}
-    No zgadnij xD
+    Estymator nieobciążony o wariancji mniejszej niż dowolny inny estymator nieobciążony.
 \end{flashcard}
 
 \begin{flashcard}[Definicja]{Statystyka dostateczna}
     Statystyka $Y_1 = u_1(X_1, X_2, \dots, X_n$ z próby o rozkładzie (dyskretnym lub ciągłym) $f(x; \theta)$ jest dostateczna wtw., gdy
-    $$ \frac{f(x_1; \theta) f(x_2; \theta) \dots f(x_n; \theta)}{f_{Y_1}[u_1(x_1, x_2, \dots, x_n); \theta]} = H(x_1, x_2, \dots, x_n, $$ gdzie funkcja $H$ nie zależy od $\theta$.
+    $$ \frac{f(x_1; \theta) f(x_2; \theta) \dots f(x_n; \theta)}{f_{Y_1}[u_1(x_1, x_2, \dots, x_n); \theta]} = H(x_1, x_2, \dots, x_n),$$ gdzie funkcja $H$ nie zależy od $\theta$.
 \end{flashcard}
 
 \begin{flashcard}[Twierdzenie]{Twierdzenie Neymana}
@@ -210,7 +239,7 @@
 \begin{flashcard}[Twierdzenie]{Twierdzenie Rao-Blackwella}
     \begin{small}
     Niech $X_1, X_2, \dots, X_n$ będzie próbą z rozkładu o gęstości (dyskretnej lub ciągłej) $f(x; \theta), \theta \in \Omega$. Niech $Y_1$ będzie statystyką dostateczną dla $\theta$ i niech $Y_2$ będzie nieobciążonym estymatorem $\theta$, który nie jest funkcją samego $Y_1$.\\
-    Wtedy statystyka $\varphi(Y_1) = \mathbb{E}[Y_2 | y_1]$ jest statystyką dostateczną, nieobciążonym estymatorem $\theta$ i ma wariancję mniejszą niż $Var(Y_2)$.
+    Wtedy statystyka $\varphi(Y_1)$ dana przez funkcję $\varphi(y_1) = \mathbb{E}[Y_2 |Y_1 = y_1]$ jest statystyką dostateczną, nieobciążonym estymatorem $\theta$ i ma wariancję mniejszą niż $Var(Y_2)$.
     \end{small}
 \end{flashcard}
 
@@ -253,16 +282,54 @@
     Niech $X_1, X_2, \dots, X_n$ będzie próbą z rozkładu o gęstości $f(x; \theta)$, $\theta \in (\gamma, \delta)$ z regularnej klasy wykładniczej. Wtedy statystyka $Y_1 = \sum_{i=1}^n K(X_i)$ jest dostateczną statystyką zupełną.
 \end{flashcard}
 
+\begin{flashcard}[Twierdzenie]{Dostateczny warunek na niezależność statystyki}
+    Niech $X_1, X_2, \dots, X_n$ będzie próbą z rozkładu $f(x; \theta), \theta \in \Omega$, gdzie $\Omega$ jest przedziałem. Niech $Y_1$ będzie zupełną statystyką dostateczną dla $\theta$ i niech $Z$ będzie inną statystyką, która nie jest funkcją samego $Y_1$. Jeżeli rozkład $Z$ nie zależy od $\theta$, to $Z$ jest niezależne od $Y_1$.
+\end{flashcard}
+
 \begin{flashcard}[Definicja]{Błąd I i II rodzaju}
     Błąd I rodzaju: odrzucenie hipotezy zerowej, gdy jest poprawna. \\
     Błąd II rodzaju: przyjęcie hipotezy zerowej, gdy jest błędna.
 \end{flashcard}
 
-\begin{flashcard}[Definicja]{Wielkość obszaru krytycznego}
-`
+\begin{flashcard}[Definicja]{Poziom istotności (i jego interpretacja)}
+    Poziom istotności $\alpha$ to liczba z przedziału $[0, 1]$. Interpretujemy to jako akceptowalne ryzyko popełnienia błędu I rodzaju.
 \end{flashcard}
 
 \begin{flashcard}[Definicja]{Moc testu statystycznego}
-    Mocą testu nazywamy prawdopodobieństwo popełnienia błęd
+    Mocą testu nazywamy prawdopodobieństwo niepopełnienia błędu II rodzaju.
 \end{flashcard}
+
+\begin{flashcard}[Definicja]{Obszar krytyczny}
+    Niech $X_1, X_2, \dots, X_n$ będzie testowaną próbą. Obszarem krytycznym $C$ nazywamy taki podzbiór przestrzeni próbek $\mathcal{D}$, że hipotezę zerową odrzucamy wtedy i tylko wtedy, gdy $(X_1, X_2, \dots, X_n) \in C$.
+\end{flashcard}
+
+\begin{flashcard}[Definicja]{Wielkość obszaru krytycznego}
+    Obszar krytyczny $C$ ma wielkość $\alpha$, jeżeli $$\alpha = \max_{\theta \in \omega_0} P_\theta [(X_1, X_2, \dots, X_n) \in C].$$ Zatem jest to też prawdopodobieństwo popełnienia błędu I rodzaju.
+\end{flashcard}
+
+\begin{flashcard}[Definicja]{Najlepszy obszar krytyczny (rozmiaru $\alpha$)}
+    Mówimy, że $C$ jest najlepszym obszarem krytycznym rozmiaru $\alpha$ dla prostej hipotezy $H_0 : \theta = \theta'$ przeciw prostej hipotezie $H_1: \theta = \theta''$, jeżeli
+    \begin{itemize}
+        \item $P_{\theta'}[X \in C] = \alpha$,
+        \item $P_{\theta''}[X \in C] \geq P_{\theta''}[X \in A]$ dla każdego innego pozbioru $A$ wielkości $\alpha$ z przestrzeni próbek.
+    \end{itemize}
+\end{flashcard}
+
+\begin{flashcard}[Twierdzenie]{Twierdzenie Neymana-Pearsona}
+\begin{small}
+    Niech $X_1, X_2, \dots, X_2$ będzie próbą z rozkładu $f(x; \theta)$. Niech $\Omega = \{\theta', \theta''\}$ i niech $C$ będzie takim podzbiorem przestrzeni próbek, że:\
+    \begin{itemize}
+        \item $\frac{L(\theta'; x)}{L(\theta''; x)} \leq k$, dla wszystkich $x \in C$,
+        \item $\frac{L(\theta'; x)}{L(\theta''; x)} \geq k$, dla wszystkich $x \in C^C$,
+        \item $\alpha = P_{H_0}[X \in C]$.
+    \end{itemize}
+    Wtedy $C$ jest najlepszym obszarem krytycznym wielkości $\alpha$ dla testowania hipotezy $H_0: \theta = \theta'$ przeciw hipotezeie $H_1: \theta = \theta''$.
+\end{small}
+\end{flashcard}
+
+\begin{flashcard}[Definicja]{Test jednostajnie najmocniejszy}
+    Obszar krytyczny $C$ jest obszarem jednostajnie najmocniejszym wielkości $\alpha$ do testowania prostej hipotezy $H_0$ przeciw złożonej hipotezie $H_1$, jeżeli $C$ jest najlepszym obszarem do testowania hipotezy $H_0$ przeciw każdej pojedynczej hipotezie spośród $H_1$. \\
+    Test zdefiniowany takim obszarem nazywamy testem jednostajnie najmocniejszym o poziomie istotności $\alpha$.
+\end{flashcard}
+
 \end{document}
