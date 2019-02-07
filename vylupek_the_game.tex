@@ -90,7 +90,7 @@
     \left[ \begin{array}{cc}
     \boldsymbol{\Sigma}_{11} & \boldsymbol{\Sigma}_{12}\\
     \boldsymbol{\Sigma}_{21} & \boldsymbol{\Sigma}_{22} \end{array} \right] $. \newline
-    
+
     Wtedy $\mathbf{X_1}$ ma rozkład $\mathcal{N}_m(\boldsymbol{\mu_1}, \boldsymbol{\Sigma}_{11})$. \\ Ponadto $\mathbf{X_1}$, $\mathbf{X_2}$ są niezależne wtw., gdy $\boldsymbol{\Sigma}_{12} = \mathbf{0}$.
 \end{flashcard}
 
@@ -217,7 +217,7 @@
 \begin{flashcard}[Definicja]{Wydajność asymptotyczna}
     Niech $\hat{\theta}_{1n}$ będzie zgodnym estymatorem $\theta_0$ takim, że $\sqrt{n}(\hat{\theta}_{1n} - \theta_0) \xrightarrow{D} \mathcal{N}(0, \sigma_{\hat{\theta}_{1n}}^2).$ Wydajnością asymptotyczną nazywamy stosunek $e(\hat{\theta}_{n}) = \frac{1/I(\theta_0)}{\sigma_{\hat{\theta}_{1n}}^2}$. Estymator jest asymptotycznie wydajny, jeżeli ten stosunek wynosi 1. \\
     Asymptotyczna wydajność względna $\hat{\theta}_{1n}$ względem $\hat{\theta}_{2n}$ to stosunek tych wartości.
-    
+
 \end{flashcard}
 
 \begin{flashcard}[Definicja]{Estymator nieobciążony o minimalnej wariancji}
@@ -225,7 +225,7 @@
 \end{flashcard}
 
 \begin{flashcard}[Definicja]{Statystyka dostateczna}
-    Statystyka $Y_1 = u_1(X_1, X_2, \dots, X_n$ z próby o rozkładzie (dyskretnym lub ciągłym) $f(x; \theta)$ jest dostateczna wtw., gdy
+    Statystyka $Y_1 = u_1(X_1, X_2, \dots, X_n)$ z próby o rozkładzie (dyskretnym lub ciągłym) $f(x; \theta)$ jest dostateczna wtw., gdy
     $$ \frac{f(x_1; \theta) f(x_2; \theta) \dots f(x_n; \theta)}{f_{Y_1}[u_1(x_1, x_2, \dots, x_n); \theta]} = H(x_1, x_2, \dots, x_n),$$ gdzie funkcja $H$ nie zależy od $\theta$.
 \end{flashcard}
 
@@ -264,11 +264,11 @@
     $$ f(x; \theta) =
     \begin{cases}
         \text{exp}[p(\theta) K(x) + S(x) + q(\theta)], x \in \mathcal{S} \\
-        0, \text{w p.p.,} 
+        0, \text{w p.p.,}
     \end{cases} $$
     Jeżeli $\mathcal{S}$ nie zależy od $\theta$, $p(\theta)$ jest ciągłą, nietrywialną funkcją $\theta$, $S$ jest ciągłą funkcją $x$ oraz $K'(x) \not\equiv 0$.
 \end{flashcard}
-    
+
 \begin{flashcard}[Twierdzenie]{Własności statystyki z regularnej klasy wykładniczej}
     Niech $X_1, X_2, \dots, X_n$ będzie próbą z rozkładu z regularnej klasy wykładniczej. Wtedy statystyka $Y_1 = \sum_{i=1}^n K(X_i)$ ma własności:
     \begin{enumerate}
